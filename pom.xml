@@ -1,0 +1,173 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.2.1.2.0-402.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.blackberry.logtools</groupId>
+  <artifactId>LogTools</artifactId>
+  <version>0.0.1</version>
+  <build>
+    <sourceDirectory>src</sourceDirectory>
+    <plugins>
+      <plugin>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>3.1</version>
+        <configuration>
+          <source>1.6</source>
+          <target>1.6</target>
+        </configuration>
+      </plugin>
+      
+      <plugin>
+		<artifactId>maven-assembly-plugin</artifactId>
+		<version>2.2</version>
+		<configuration>
+			<descriptorRefs>
+				<descriptorRef>jar-with-dependencies</descriptorRef>
+			</descriptorRefs>
+		</configuration>
+		<executions>
+			<execution>
+				<id>make-assembly</id>
+				<phase>package</phase>
+				<goals>
+					<goal>single</goal>
+				</goals>
+			</execution>
+		</executions>
+	  </plugin>
+		      
+	</plugins>
+  </build>
+  
+  <repositories>
+    <!-- Hortonworks repo -->
+    <repository>
+      <releases>
+        <enabled>true</enabled>
+        <updatePolicy>always</updatePolicy>
+        <checksumPolicy>warn</checksumPolicy>
+      </releases>
+      <snapshots>
+        <enabled>false</enabled>
+        <updatePolicy>never</updatePolicy>
+        <checksumPolicy>fail</checksumPolicy>
+      </snapshots>
+      <id>HDPReleases</id>
+      <name>HDP Releases</name>
+      <url>http://repo.hortonworks.com/content/repositories/releases/</url>
+      <layout>default</layout>
+    </repository>
+  </repositories>
+
+
+  <dependencies>
+    <dependency>
+      <groupId>org.apache.mina</groupId>
+      <artifactId>mina-core</artifactId>
+      <version>2.0.4</version>
+    </dependency>
+
+    <dependency>
+      <groupId>commons-io</groupId>
+      <artifactId>commons-io</artifactId>
+      <version>2.4</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>slf4j-api</artifactId>
+      <version>1.6.6</version>
+    </dependency>
+    
+    <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>slf4j-log4j12</artifactId>
+      <version>1.6.6</version>
+    </dependency>
+    
+    <dependency>
+      <groupId>log4j</groupId>
+      <artifactId>log4j</artifactId>
+      <version>1.2.17</version>
+    </dependency>
+
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>4.11</version>
+      <scope>test</scope>
+    </dependency>
+    
+    <dependency>
+		<groupId>commons-lang</groupId>
+		<artifactId>commons-lang</artifactId>
+		<version>2.6</version>
+	</dependency>
+	
+	 <dependency>
+        <groupId>org.apache.hadoop</groupId>
+        <artifactId>hadoop-client</artifactId>
+        <version>2.4.0</version>
+     </dependency>
+     
+     <dependency>
+        <groupId>org.apache.avro</groupId>
+        <artifactId>avro-mapred</artifactId>
+        <version>1.7.3</version>
+     </dependency>
+     
+     <dependency>
+       <groupId>org.apache.avro</groupId>
+       <artifactId>avro-compiler</artifactId>
+       <version>1.7.3</version>
+     </dependency>
+     
+     <dependency>
+		<groupId>org.yaml</groupId>
+		<artifactId>snakeyaml</artifactId>
+		<version>1.10</version>
+	</dependency>
+	
+	<dependency>
+		<groupId>org.apache.pig</groupId>
+		<artifactId>pig</artifactId>
+		<classifier>h2</classifier> 
+		<version>0.12.1.2.1.2.0-402</version>
+	</dependency>
+
+	<dependency>
+		<groupId>org.codehaus.jettison</groupId>
+		<artifactId>jettison</artifactId>
+		<version>1.1</version>
+	</dependency>
+
+	<dependency>
+		<groupId>commons-net</groupId>
+		<artifactId>commons-net</artifactId>
+		<version>3.3</version>
+	</dependency>
+	
+	<dependency>
+		<groupId>org.apache.oozie</groupId>
+		<artifactId>oozie-client</artifactId>
+		<version>4.0.0.2.1.2.0-402</version>
+		<!-- <version>4.0.0</version>-->
+		<exclusions>
+			<exclusion>
+				<groupId>org.slf4j</groupId>
+				<artifactId>slf4j-simple</artifactId>
+			</exclusion>
+		</exclusions>
+	</dependency>
+	
+	<dependency>
+		<groupId>dk.brics.automaton</groupId>
+		<artifactId>automaton</artifactId>
+		<version>1.11-8</version>
+	</dependency>
+	
+	<dependency>
+		<groupId>args4j</groupId>
+		<artifactId>args4j</artifactId>
+		<version>2.0.29</version>
+	</dependency>
+  </dependencies>
+</project>

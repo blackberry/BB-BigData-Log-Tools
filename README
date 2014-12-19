@@ -1,0 +1,66 @@
+# Logtools - Tool for searching through Hadoop logs
+
+## Overview
+
+LogDriver suite of tools and applications for logging management on Hadoop.  It is primary built and maintained at BlackBerry, but we welcome contributions in any form from the larger community.
+
+## Major Features
+* Data Access Tools:  A set of tools designed to be executed from the command line, replacing common log management functions such as cat and grep.
+* Data Reporting Tools:  A set of tools designed to collect statistical metadata of various log content.
+* Strong Security Model:  Full support for Kerberos+LDAP based authentication and strict security models.
+
+## Upgrades & Added Features
+•	Output – default set to stdout and is no longer a required argument.
+•	Order of arguments do not matter – error catching for not enough arguments.
+•	Arguments are clearly defined. Example of error message for logcat:
+		;****************************************
+		                         NOT ENOUGH ARGUMENTS
+		
+		        USAGE: logcat [REQUIRED ARGUMENTS] [OPTIONS] (Order does not matter)
+		        REQUIRED ARGUMENTS:
+		                -dc=[DATACENTER]        Data Center.
+		                -svc=[SERVICE]          Service.
+		                -comp=[COMPONENT]       Component.
+		                -start=[START]          Start time.
+		                -end=[END]              End time.
+		        Options:
+		                --out=[DIRECTORY]       Desired output directory. If not defined, output to stdout.
+		                --v                     Verbose output.
+		                --r                     Force remote sort.
+		                --l                     Force local sort.
+		                --dateFormat=[FORMAT]   Valid formats are RFC822, RFC3164 (zero padded day),
+		                                        RFC5424 (default), or any valid format string for FastDateFormat.
+		                --fieldSeparator=X      The separator to use to separate fields in intermediate
+		                                        files.  Defaults to 'INFORMATION SEPARATOR ONE' (U+001F).
+		                --silent                Output only the data.
+		                --log                   Save all the logs.
+		;****************************************
+•	Everything but data sent to stderr – notices VS output:
+		o	Progress Message --> ; PROGRESS UPDATE
+		o	Error 			 --> ;******************** ERROR MSG ********************
+		o	Data 			 --> ;#################### DATA MARKER ####################
+•	Result marker used to specify where data begins and ends.
+•	Semi-colon at the beginning of comments – allows easier parsing out of comments.
+•	Date parsing to allow for passing of epoch time and descriptive time (ex. “now”).
+•	Error checking for proper epoch time.
+•	New option: --silent --> return only data.
+•	Clean up all temp files upon system exit and interrupts.
+•	New option: --log --> saves and gives paths of all temp files/directory if needed for support.
+•	Define output directory as a new directory to be created.
+		o	Check if parent directory exists so that a new directory for output can be created.
+		o	Check if new directory path of requested output does not exist.
+•	Error check to notify of no/bad Kerberos ticket.
+•	Error check to notify of no permission outlining process to get access.
+•	Make error messages are user friendly instead of generic java error message.
+•	Error message given for exceeded HDFS quota.
+•	Compression of results between all the steps - mapreduce.output.fileoutputformat.compress=true
+•	Able to run -D options.
+•	Exit with status 1 on errors.
+•	PIG search directly instead of using command line. 
+•	Allow for the use of the logmultisearch script with a pinlist file from Windows.
+		o	Dos2unix conversion for the content of all input files and directories.
+	
+## Disclaimer
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+	
